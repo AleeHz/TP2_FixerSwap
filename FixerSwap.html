@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixerSwap | Componentes Electrónicos</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; margin: 0; padding: 0; }
+        header { background-color: #2c3e50; color: white; padding: 1.5rem; text-align: center; }
+        .container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .card { background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .card:hover { transform: translateY(-5px); }
+        .tag { display: inline-block; padding: 0.2rem 0.5rem; background: #3498db; color: white; border-radius: 4px; font-size: 0.8rem; margin-bottom: 0.5rem; }
+        .price { font-size: 1.5rem; font-weight: bold; color: #27ae60; margin: 1rem 0; }
+        button { background-color: #2ecc71; color: white; border: none; padding: 0.8rem; width: 100%; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        button:hover { background-color: #27ae60; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🔧 FixerSwap</h1>
+    <p>El mercado de la economía circular para técnicos. Repuestos, herramientas y scrap.</p>
+</header>
+
+<div class="container">
+    <div class="grid" id="productos-grid">
+        </div>
+</div>
+
+<script>
+    // Estructura de datos basada en el diseño del registro
+    const inventario = [
+        {
+            id_articulo: "uuid-1a2b-3c4d",
+            nombre_componente: "Cámara Frontal 16mp (Extraída)",
+            categoria_item: "Repuesto",
+            estado_desgaste: "Funcional, testeado",
+            dispositivos_compatibles: ["Motorola G42"],
+            precio_ars: 8500.00,
+            acepta_intercambio: true
+        },
+        {
+            id_articulo: "uuid-5e6f-7g8h",
+            nombre_componente: "Probador Test Tester Dock Flex",
+            categoria_item: "Herramienta",
+            estado_desgaste: "Nuevo",
+            dispositivos_compatibles: ["Universal Tipo-C"],
+            precio_ars: 12000.00,
+            acepta_intercambio: false
+        },
+        {
+            id_articulo: "uuid-9i0j-1k2l",
+            nombre_componente: "Tubo Pegamento B-7000 (Medio uso)",
+            categoria_item: "Consumible",
+            estado_desgaste: "50% restante",
+            dispositivos_compatibles: ["Universal"],
+            precio_ars: 3000.00,
+            acepta_intercambio: true
+        }
+    ];
+
+    const contenedor = document.getElementById('productos-grid');
+
+    inventario.forEach(item => {
+        const tarjeta = document.createElement('div');
+        tarjeta.className = 'card';
+        tarjeta.innerHTML = `
+            <span class="tag">${item.categoria_item}</span>
+            <h3>${item.nombre_componente}</h3>
+            <p><strong>Estado:</strong> ${item.estado_desgaste}</p>
+            <p><small>Compatibilidad: ${item.dispositivos_compatibles.join(', ')}</small></p>
+            <div class="price">$${item.precio_ars}</div>
+            <p><small>${item.acepta_intercambio ? '✅ Acepta permuta' : '❌ Solo efectivo'}</small></p>
+            <button onclick="alert('Iniciando proceso de compra/intercambio para el registro: ${item.id_articulo}')">Comprar / Ofertar</button>
+        `;
+        contenedor.appendChild(tarjeta);
+    });
+</script>
+
+</body>
+</html>
